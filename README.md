@@ -8,7 +8,7 @@ Jasper Ding
 
 # How to run
 
-1.Set the number of colors and the group size at the top of main.py.
+1. Set the number of colors and the group size at the top of main.py.
 2. Run python main.py.
 
 The program prints whether the coloring is valid and whether it used the minimum number of colors.
