@@ -7,7 +7,7 @@ def generate_uniform_graph(n, m):
     """
     Generate an undirected simple graph with n vertices and exactly m edges.
     Vertices are labeled 0, 1, ..., n-1.
-    Returns an adjacency list.
+    Returns an adjacency dict: vertex -> set of neighbours.
     """
     possible_edges = []
 
@@ -20,11 +20,11 @@ def generate_uniform_graph(n, m):
 
     edges = random.sample(possible_edges, m)
 
-    graph = {i: [] for i in range(n)}
+    graph = {i: set() for i in range(n)}
 
     for u, v in edges:
-        graph[u].append(v)
-        graph[v].append(u)
+        graph[u].add(v)
+        graph[v].add(u)
 
     return graph
 
@@ -39,8 +39,8 @@ def generate_geometric_graph(n, radius):
         y = random.random()
         positions[i] = (x, y)
 
-    #create empty graph
-    graph = {i: [] for i in range(n)}
+    #create empty graph (sets, so the solvers can check neighbours quickly)
+    graph = {i: set() for i in range(n)}
 
     #connect points that are close enough
     for i in range(n):
@@ -51,8 +51,8 @@ def generate_geometric_graph(n, radius):
             distance = math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
 
             if distance <= radius:
-                graph[i].append(j)
-                graph[j].append(i)
+                graph[i].add(j)
+                graph[j].add(i)
 
     return graph, positions
 
